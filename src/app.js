@@ -1,51 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./components/Home";
+import Header from "./components/Header";
+import Body from "./components/Body";
 import Contacts from "./components/Contacts";
 import About from "./components/About";
+import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// React element using JSX (jSX element is a syntax extension for JavaScript that looks similar to HTML and is used to describe the UI in React)
-// const heading = <h1 id="heading">React Element from JSX </h1>;
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(heading);
+// Routing in React :- is a process of defining different routes in our application and rendering different components based on the URL path. It allows us to create a single-page application (SPA) where the content changes dynamically without reloading the entire page.
 
-// React component using JSX (JSX Component is a function that returns JSX)
-// const Heading = () => {
-//   return <h1 id="heading">React Component from JSX </h1>;
-// };
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(<Heading />);
+// server-side routing:- In server-side routing, the server handles the routing logic. When a user requests a specific URL, the server processes the request and sends back the appropriate HTML page. This approach is traditional and is commonly used in multi-page applications (MPAs).
 
-// JSX Component with Props (Props are a way to pass data from parent to child component in React)
-// const Heading = (props) => {
-// console.log(props); Props is an object that contains all the properties passed to the component
-//   return (
-//     <div>
-//       <h1>{props.text}</h1>
-//       <h1>{props.msg}</h1>
-//     </div>
-//   );
-// };
-// const Propss = () => {
-//   return (
-//     <div>
-//       <Heading text="Heading 1 from Props" msg="Message 1 from Props" />
-//     </div>
-//   );
-// };
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(<Propss />);
-
-// what is useState asynchronous
-// useState is a hook that allows you to add state to a functional component in React. It is asynchronous because it does not update the state immediately, but rather schedules an update for the next render. This means that if you try to access the state immediately after calling the setState function, you will get the old state value instead of the updated one. To get the updated state value, you can use the useEffect hook to listen for changes in the state and perform actions accordingly.
+// client-side routing:- In client-side routing, the routing logic is handled on the client side using JavaScript. When a user clicks on a link or navigates to a specific URL, the client-side router intercepts the request and dynamically updates the content without reloading the entire page. This approach is commonly used in single-page applications (SPAs) built with frameworks like React.
 
 const App = () => {
   return (
     <div>
-      <Home />
-      <Contacts />
-      <About />
+      <Header />
+      <Body />
     </div>
   );
 };
@@ -54,14 +26,15 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
+    errorElement: <Error />,
   },
   {
     path: "/contacts",
     element: <Contacts />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
 ]);
 

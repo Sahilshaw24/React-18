@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom/client";
+
+Hooks are special functions that let you "hook into" React features. For example, useState is a hook that allows you to add state to a functional component. Hooks can only be used inside functional components and cannot be used in class components. They are a way to reuse stateful logic between components without changing the component hierarchy.
+
+useState :- is a hook that allows you to add state to a functional component in React. It returns an array with two elements: the current state value and a function to update that state. You can use it like this:
+
+const [count, setCount] = useState(0);
+In this example, count is the current state value initialized to 0, and setCount is the function that can be used to update the count state. When you call setCount with a new value, React will re-render the component with the updated state.
+
+useState asynchronous :-
+useState is a hook that allows you to add state to a functional component in React. It is asynchronous because it does not update the state immediately, but rather schedules an update for the next render. This means that if you try to access the state immediately after calling the setState function, you will get the old state value instead of the updated one. To get the updated state value, you can use the useEffect hook to listen for changes in the state and perform actions accordingly.
+
+useEffeect :- useEffect is a hook in React that allows you to perform side effects in functional components. It takes a function as an argument and runs it after the component renders. You can use it to fetch data, set up subscriptions, or manually change the DOM. The useEffect hook can also take a second argument, which is an array of dependencies. If any of the dependencies change, the effect will run again. If you pass an empty array, the effect will only run once when the component mounts.
+
+useEffect(() => {
+  // This code will run after the component renders
+  console.log("Component has rendered");
+}, []); // The empty array means this effect will only run once when the component mounts
+
+3 main cases of useEffect :-
+1. When you want to run an effect only once when the component mounts, you can pass an empty array as the second argument to useEffect.
+example :- useEffect(() => {
+  // This code will run only once when the component mounts
+  console.log("Component has mounted");
+}
+
+2. When you want to run an effect every time a specific state or prop changes, you can pass that state or prop in the dependency array.
+example :- useEffect(() => {
+  // This code will run every time the 'count' state changes
+  console.log("Count has changed:", count);
+}
+
+3. When you want to run an effect on every render, you can omit the second argument, and the effect will run after every render.
+example :- useEffect(() => { 
+  // This code will run after every render
+  console.log("Component has rendered");
+});
+
+Reconciliation :- Reconciliation is the process by which React updates the DOM to match the virtual DOM. When a component's state or props change, React creates a new virtual DOM tree and compares it to the previous one. It then calculates the minimum number of changes needed to update the actual DOM to match the new virtual DOM. This process is efficient and allows React to update only the parts of the DOM that have changed, rather than re-rendering the entire page.
+
+React uses a diffing algorithm to compare the old and new virtual DOM trees. It identifies which elements have changed, been added, or been removed. Based on this comparison, React updates the actual DOM accordingly, ensuring that the user interface remains responsive and efficient.
+
+flow of reconciliation :-
+1. When a component's state or props change, React creates a new virtual DOM tree.
+2. React compares the new virtual DOM tree with the previous one using a diffing algorithm.
+3. React identifies which elements have changed, been added, or been removed.
+4. React updates the actual DOM to match the new virtual DOM, making only the necessary changes to ensure optimal performance.
